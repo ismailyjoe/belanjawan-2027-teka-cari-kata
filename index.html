@@ -34,7 +34,7 @@
 </div>
  <footer class="footer"><span>© 2027 · Made by IBJ</span><span>Teka Cari Kata · Belanjawan 2027</span></footer>
 </div>
-<dialog id="setupDialog" aria-labelledby="setupTitle"><p class="eyebrow">Mulakan cabaran</p><h2 id="setupTitle">Permainan baharu</h2><p id="setupNote">Pilih tema dan tempoh permainan. Setiap pusingan memilih 10 daripada 20 perkataan bertema Belanjawan.</p><label for="setSelect">Tema permainan</label><select id="setSelect"></select><label for="timeSelect">Tempoh masa</label><select id="timeSelect"><option value="300" selected>5 minit</option><option value="600">10 minit</option><option value="0">Tanpa had masa</option></select><div class="dialog-actions"><button id="cancelSetup">Batal</button><button id="confirmStart" class="primary">Mula →</button></div></dialog>
+<dialog id="setupDialog" aria-labelledby="setupTitle"><p class="eyebrow">Mulakan cabaran</p><h2 id="setupTitle">Permainan baharu</h2><p id="setupNote">Pilih tema dan tempoh permainan. Setiap pusingan memilih 10 perkataan bertema Belanjawan.</p><label for="setSelect">Tema permainan</label><select id="setSelect"></select><label for="timeSelect">Tempoh masa</label><select id="timeSelect"><option value="300" selected>5 minit</option><option value="600">10 minit</option><option value="0">Tanpa had masa</option></select><div class="dialog-actions"><button id="cancelSetup">Batal</button><button id="confirmStart" class="primary">Mula →</button></div></dialog>
 <dialog id="resultDialog" aria-labelledby="resultTitle"><p class="eyebrow" id="resultEyebrow">Cabaran selesai</p><h2 id="resultTitle">Masa tamat!</h2><div class="result-score"><span id="resultScore">0</span><small> / 10</small></div><p id="resultText"></p><div class="result-data" id="resultData"></div><div class="dialog-actions"><button id="reviewBtn">Semak papan</button><button id="replayBtn" class="primary">Main lagi →</button></div></dialog>
 <dialog id="answerDialog" aria-labelledby="answerTitle"><h2 id="answerTitle">Tamatkan permainan?</h2><p>Permainan akan ditamatkan dan semua perkataan yang belum ditemui akan ditunjukkan. Skor semasa anda dikekalkan.</p><div class="dialog-actions"><button id="cancelAnswers">Terus bermain</button><button id="confirmAnswers" class="primary">Lihat jawapan</button></div></dialog>
 <dialog id="helpDialog" aria-labelledby="helpTitle"><p class="eyebrow">Panduan ringkas</p><h2 id="helpTitle">Cara bermain</h2><ol class="help-steps"><li>Pilih satu daripada lima set. Pemasa lalai ialah <b>5 minit</b> dan bermula apabila anda menekan <b>Mula</b>.</li><li><b>Seret</b> dari huruf pertama ke huruf terakhir. Anda juga boleh <b>ketik huruf pertama, kemudian huruf terakhir</b>.</li><li>Cari secara melintang, menegak atau menyerong, termasuk dari arah terbalik.</li><li>Gunakan sehingga <b>3 petunjuk</b> untuk menyerlahkan huruf pertama bagi perkataan yang belum ditemui.</li><li>Papan kekunci: gunakan anak panah untuk bergerak, <b>Enter atau Space</b> untuk memilih hujung perkataan, dan <b>Esc</b> untuk membatalkan pilihan.</li></ol><div class="dialog-actions"><button id="closeHelp" class="primary">Faham, jom main</button></div></dialog>
@@ -400,6 +400,14 @@ const SETS = [
       [
         "PELEPASANCUKAI",
         "Had pelepasan cukai individu diumumkan naik daripada RM9,000 kepada RM12,000."
+      ],
+      [
+        "M40",
+        "SARA MADANI RM100 sebanyak dua kali turut memanfaatkan golongan M40 yang layak."
+      ],
+      [
+        "TUISYEN",
+        "Pelepasan cukai yuran pengajian dan kemahiran diperluas untuk merangkumi tuisyen anak."
       ]
     ]
   },
@@ -497,14 +505,12 @@ function hasNineLetters(word) {
 }
 
 function chooseRoundWords(pool, previous) {
-  const shuffled = shuffle([...pool]);
-  const required = shuffled.filter(([word]) => hasNineLetters(word)).slice(0, 2);
-  const remaining = shuffled.filter(entry => !required.includes(entry));
-  const selected = [...required, ...remaining.slice(0, 10 - required.length)];
+  const longWords = shuffle(pool.filter(([word]) => hasNineLetters(word)));
+  const shortWords = shuffle(pool.filter(([word]) => !hasNineLetters(word)));
+  const selected = [...longWords.slice(0, 2), ...shortWords.slice(0, 8)];
 
   if (previous && selected.every(([word]) => previous.has(word))) {
-    const alternative = remaining.find(([word]) => !previous.has(word));
-    selected[9] = alternative;
+    selected[1] = longWords.find(([word]) => !previous.has(word));
   }
 
   return shuffle(selected);
