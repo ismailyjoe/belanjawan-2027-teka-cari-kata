@@ -34,7 +34,7 @@
 </div>
  <footer class="footer"><span>© 2027 · Made by IBJ</span><span>Teka Cari Kata · Belanjawan 2027</span></footer>
 </div>
-<dialog id="setupDialog" aria-labelledby="setupTitle"><p class="eyebrow">Mulakan cabaran</p><h2 id="setupTitle">Permainan baharu</h2><p id="setupNote">Pilih tema dan tempoh permainan. Setiap permainan mempunyai 10 perkataan.</p><label for="setSelect">Tema permainan</label><select id="setSelect"></select><label for="timeSelect">Tempoh masa</label><select id="timeSelect"><option value="300" selected>5 minit</option><option value="600">10 minit</option><option value="0">Tanpa had masa</option></select><div class="dialog-actions"><button id="cancelSetup">Batal</button><button id="confirmStart" class="primary">Mula →</button></div></dialog>
+<dialog id="setupDialog" aria-labelledby="setupTitle"><p class="eyebrow">Mulakan cabaran</p><h2 id="setupTitle">Permainan baharu</h2><p id="setupNote">Pilih tema dan tempoh permainan. Setiap pusingan memilih 10 daripada 30 perkataan bertema Belanjawan.</p><label for="setSelect">Tema permainan</label><select id="setSelect"></select><label for="timeSelect">Tempoh masa</label><select id="timeSelect"><option value="300" selected>5 minit</option><option value="600">10 minit</option><option value="0">Tanpa had masa</option></select><div class="dialog-actions"><button id="cancelSetup">Batal</button><button id="confirmStart" class="primary">Mula →</button></div></dialog>
 <dialog id="resultDialog" aria-labelledby="resultTitle"><p class="eyebrow" id="resultEyebrow">Cabaran selesai</p><h2 id="resultTitle">Masa tamat!</h2><div class="result-score"><span id="resultScore">0</span><small> / 10</small></div><p id="resultText"></p><div class="result-data" id="resultData"></div><div class="dialog-actions"><button id="reviewBtn">Semak papan</button><button id="replayBtn" class="primary">Main lagi →</button></div></dialog>
 <dialog id="answerDialog" aria-labelledby="answerTitle"><h2 id="answerTitle">Tamatkan permainan?</h2><p>Permainan akan ditamatkan dan semua perkataan yang belum ditemui akan ditunjukkan. Skor semasa anda dikekalkan.</p><div class="dialog-actions"><button id="cancelAnswers">Terus bermain</button><button id="confirmAnswers" class="primary">Lihat jawapan</button></div></dialog>
 <dialog id="helpDialog" aria-labelledby="helpTitle"><p class="eyebrow">Panduan ringkas</p><h2 id="helpTitle">Cara bermain</h2><ol class="help-steps"><li>Pilih satu daripada lima set. Pemasa lalai ialah <b>5 minit</b> dan bermula apabila anda menekan <b>Mula</b>.</li><li><b>Seret</b> dari huruf pertama ke huruf terakhir. Anda juga boleh <b>ketik huruf pertama, kemudian huruf terakhir</b>.</li><li>Cari secara melintang, menegak atau menyerong, termasuk dari arah terbalik.</li><li>Gunakan sehingga <b>3 petunjuk</b> untuk menyerlahkan huruf pertama bagi perkataan yang belum ditemui.</li><li>Papan kekunci: gunakan anak panah untuk bergerak, <b>Enter atau Space</b> untuk memilih hujung perkataan, dan <b>Esc</b> untuk membatalkan pilihan.</li></ol><div class="dialog-actions"><button id="closeHelp" class="primary">Faham, jom main</button></div></dialog>
@@ -69,6 +69,133 @@ const SETS = [
  {title:'Bantuan Rakyat & Sara Hidup',words:[['STR','Sumbangan Tunai Rahmah.'],['SARA','Sumbangan Asas Rahmah.'],['BUDI','Penyasaran subsidi bahan api.'],['MANFAAT','Portal rasmi untuk menyemak inisiatif bantuan.'],['MYLESEN','Program lesen motosikal bagi golongan B40.'],['PETROL','Bahan api dalam pelaksanaan subsidi bersasar.'],['DIESEL','Bahan api di bawah penyasaran subsidi.'],['RAHMAH','Program jualan barangan keperluan.'],['DIGITALID','Akses identiti digital kepada perkhidmatan kerajaan.'],['SUBSIDI','Sokongan kerajaan untuk kebajikan rakyat.']]},
  {title:'Kesihatan & Komuniti MADANI',words:[['MEDIASAS','Pelan perlindungan asas mampu milik.'],['MYSALAM','Skim perlindungan kesihatan untuk golongan B40.'],['MYDESA','Pembangunan infrastruktur dan ekonomi desa.'],['HOSPITAL','Fasiliti dan peralatan rawatan awam.'],['KLINIK','Pembaikan kemudahan kesihatan dan klinik desa.'],['SOLAR','Pemasangan bumbung solar dan teknologi bersih.'],['HIJAU','Insentif bagi teknologi dan aset hijau.'],['MOBILITI','Pembiayaan bagi mobiliti lestari.'],['KOMUNITI','Pemerkasaan pertubuhan kemasyarakatan.'],['MADANI','Ihsan, kemampanan dan kesejahteraan.']]}
 ];
+const EXTRA_WORDS = [
+  [
+    "BAJETSEKOLAH",
+    "GERANSEKOLAH",
+    "YURANSEKOLAH",
+    "PAKAIANSEKOLAH",
+    "KASUTSEKOLAH",
+    "BEGALAS",
+    "ALATTULIS",
+    "BUKULATIHAN",
+    "MAKANANMURID",
+    "SUSUSEKOLAH",
+    "NAIKTARAF",
+    "SELENGGARA",
+    "PERUNTUKAN",
+    "INFRASTRUKTUR",
+    "BANTUANMURID",
+    "ELAUNMURID",
+    "TAJAAN",
+    "MURIDKHAS",
+    "PRASEKOLAH",
+    "PEDALAMAN"
+  ],
+  [
+    "BIASISWASISWA",
+    "TAJAAN",
+    "PENAJAAN",
+    "PINJAMAN",
+    "KOSKULIAH",
+    "YURAN",
+    "KOSASRAMA",
+    "KOLEJKEDIAMAN",
+    "ELAUNSISWA",
+    "BANTUANSISWA",
+    "VOKASIONAL",
+    "TVET",
+    "PEMBIAYAAN",
+    "LATIHAN",
+    "KEMAHIRAN",
+    "DANA",
+    "SISWAZAH",
+    "PENYELIDIKAN",
+    "INOVASI",
+    "KEUSAHAWANAN"
+  ],
+  [
+    "CARUMAN",
+    "DIVIDEN",
+    "SIMPANAN",
+    "PERSARAAN",
+    "PESARA",
+    "WARIS",
+    "PENAMA",
+    "ANUITI",
+    "TAKAFUL",
+    "INSURANS",
+    "FAEDAH",
+    "PAMPASAN",
+    "HILANGUPAYA",
+    "PEMULIHAN",
+    "PENJAGA",
+    "TANGGUNGAN",
+    "PENCARUM",
+    "MAJIKAN",
+    "PEKERJA",
+    "ELAUN"
+  ],
+  [
+    "BAKULDAPUR",
+    "BARANGASAS",
+    "BELANJA",
+    "PENDAPATAN",
+    "ISIRUMAH",
+    "BANTUAN",
+    "TUNAI",
+    "BAUCAR",
+    "TEBUSAN",
+    "PASARTANI",
+    "HARGA",
+    "SARAHIDUP",
+    "KEPERLUAN",
+    "PENGGUNA",
+    "JIMAT",
+    "BAKULMAKANAN",
+    "BEKALAN",
+    "PERBELANJAAN",
+    "KELAYAKAN",
+    "PERMOHONAN"
+  ],
+  [
+    "VAKSIN",
+    "IMUNISASI",
+    "SARINGAN",
+    "UBATUBATAN",
+    "UBAT",
+    "RAWATAN",
+    "PESAKIT",
+    "AMBULANS",
+    "KECEMASAN",
+    "PEMAKANAN",
+    "KECERGASAN",
+    "GOTONGROYONG",
+    "KEJIRANAN",
+    "KESEJAHTERAAN",
+    "KEBAJIKAN",
+    "KESUKARELAAN",
+    "DERMA",
+    "DANA",
+    "DANAKOMUNITI",
+    "KITKESIHATAN"
+  ]
+];
+EXTRA_WORDS.forEach((words, index) => {
+  SETS[index].words.push(...words.map(word => [word, '']));
+});
+
+const previousRounds = new Map();
+
+function chooseRoundWords(pool, previous) {
+  const selected = shuffle([...pool]).slice(0, 10);
+  if (previous && selected.every(([word]) => previous.has(word))) {
+    const alternative = shuffle(pool.filter(([word]) => !previous.has(word)))[0];
+    selected[9] = alternative;
+  }
+  return selected;
+}
+
 const SIZE=14,DIRS=[[0,1],[1,0],[1,1],[-1,1],[0,-1],[-1,0],[-1,-1],[1,-1]],COLORS=['#cde7ce','#d1e8ee','#e9deaf','#e3d8ef','#cbe8df','#f0d5c5','#dce4b8','#d5def2','#eed2db','#cfdfd5'];
 const $=id=>document.getElementById(id);
 let state={set:0,grid:[],placements:[],found:new Map(),status:'ready',seconds:300,remaining:300,deadline:0,started:0,hints:0,selected:null,preview:[],hinted:[],revealed:false,elapsed:0},clock=null,toastClock=null,pointer=null,keyIndex=0;
@@ -95,12 +222,15 @@ function generatePuzzle(words){
  shuffle([...words]).forEach((word,r)=>{const start=Math.floor(Math.random()*(SIZE-word.length+1));const reverse=Math.random()<.5,cells=[];for(let k=0;k<word.length;k++){const c=reverse?start+word.length-1-k:start+k;grid[r][c]=word[k];cells.push(r*SIZE+c);}placements.push({word,cells});});return {grid,placements};
 }
 function makeBoard(set,seconds,active=false){
- clearInterval(clock);const puzzle=generatePuzzle(SETS[set].words.map(w=>w[0]));
- state={set,...puzzle,found:new Map(),status:active?'playing':'ready',seconds,remaining:seconds,deadline:seconds?Date.now()+seconds*1000:0,started:Date.now(),hints:0,selected:null,preview:[],hinted:[],revealed:false,elapsed:0};pointer=null;keyIndex=0;
+ clearInterval(clock);
+ const words = chooseRoundWords(SETS[set].words, previousRounds.get(set));
+ const puzzle = generatePuzzle(words.map(([word]) => word));
+ if (active) previousRounds.set(set, new Set(words.map(([word]) => word)));
+ state={set,words,...puzzle,found:new Map(),status:active?'playing':'ready',seconds,remaining:seconds,deadline:seconds?Date.now()+seconds*1000:0,started:Date.now(),hints:0,selected:null,preview:[],hinted:[],revealed:false,elapsed:0};pointer=null;keyIndex=0;
  $('setBadge').textContent='Set '+String(set+1).padStart(2,'0');$('themeTitle').textContent=SETS[set].title;
  $('grid').replaceChildren();state.grid.flat().forEach((letter,i)=>{const b=document.createElement('button');b.className='letter';b.textContent=letter;b.dataset.i=i;b.setAttribute('role','gridcell');b.setAttribute('aria-label',letter+', baris '+(Math.floor(i/SIZE)+1)+', lajur '+(i%SIZE+1));b.tabIndex=i===0?0:-1;$('grid').append(b);});
  $('themes').replaceChildren();SETS.forEach((s,i)=>{const b=document.createElement('button');b.className='theme'+(i===set?' selected':'');b.setAttribute('aria-pressed',String(i===set));b.innerHTML='<span class="num">0'+(i+1)+'</span><span>'+s.title+'</span>';b.onclick=()=>{if(state.status==='playing')openSetup(i);else makeBoard(i,state.seconds);};$('themes').append(b);});
- $('wordList').replaceChildren();SETS[set].words.forEach(([word,desc])=>{const li=document.createElement('li');li.className='word-item';li.dataset.word=word;li.innerHTML='<span class="check" aria-hidden="true">✓</span><div><strong>'+word+'</strong><p>'+desc+'</p></div>';$('wordList').append(li);});
+ $('wordList').replaceChildren();words.forEach(([word,desc])=>{const li=document.createElement('li');li.className='word-item';li.dataset.word=word;li.innerHTML='<span class="check" aria-hidden="true">✓</span><div><strong>'+word+'</strong>'+(desc?'<p>'+desc+'</p>':'')+'</div>';$('wordList').append(li);});
  $('veil').hidden=active;$('hintCount').textContent='0/3';$('hintBtn').disabled=!active;$('answersBtn').disabled=!active;$('timerBox').classList.remove('urgent');$('status').textContent=active?'Seret huruf, atau ketik huruf pertama dan terakhir.':'Pemasa bermula apabila anda menekan Mula.';renderProgress();renderTimer();resizeCells();
  if(active){clock=setInterval(tick,200);announce('Permainan bermula. '+SETS[set].title+'. '+(seconds?seconds/60+' minit.':'Tanpa had masa.'));}
 }
@@ -111,8 +241,8 @@ function canPlay(){if(state.status!=='playing')return false;tick();return state.
 function announce(msg){$('announcement').textContent=msg;}
 function notify(msg){$('toast').textContent=msg;$('toast').hidden=false;clearTimeout(toastClock);toastClock=setTimeout(()=>$('toast').hidden=true,2400);}
 function path(a,b){const ar=Math.floor(a/SIZE),ac=a%SIZE,br=Math.floor(b/SIZE),bc=b%SIZE,rd=br-ar,cd=bc-ac;if(rd&&cd&&Math.abs(rd)!==Math.abs(cd))return [];const n=Math.max(Math.abs(rd),Math.abs(cd));return Array.from({length:n+1},(_,k)=>(ar+Math.sign(rd)*k)*SIZE+ac+Math.sign(cd)*k);}
-function paint(){const colors=new Map();for(const [word,cells]of state.found){const color=COLORS[SETS[state.set].words.findIndex(w=>w[0]===word)];for(const i of cells)colors.set(i,color);}const shown=new Set(state.revealed?state.placements.filter(p=>!state.found.has(p.word)).flatMap(p=>p.cells):[]);const preview=new Set(state.preview),hinted=new Set(state.hinted);[...$('grid').children].forEach((b,i)=>{b.classList.toggle('found',colors.has(i));b.classList.toggle('preview',preview.has(i));b.classList.toggle('hinted',hinted.has(i));b.classList.toggle('answer',shown.has(i)&&!colors.has(i));b.style.setProperty('--found-bg',colors.get(i)||'#d5e9c8');});}
-function selectWord(a,b){if(!canPlay())return;const cells=path(a,b);state.selected=null;state.preview=[];if(cells.length<2){paint();if(!cells.length)notify('Pilih dalam satu garis lurus.');$('status').textContent='Seret huruf, atau ketik huruf pertama dan terakhir.';return;}const word=cells.map(i=>state.grid[Math.floor(i/SIZE)][i%SIZE]).join(''),back=[...word].reverse().join('');const target=SETS[state.set].words.find(w=>w[0]===word||w[0]===back)?.[0];if(target){if(state.found.has(target)){notify(target+' telah ditemui.');}else{state.found.set(target,cells);state.hinted=[];renderProgress();$('status').textContent='✓ '+target+' ditemui. '+(10-state.found.size)+' lagi!';announce(target+' ditemui. '+state.found.size+' daripada 10.');if(state.found.size===10)finish('won');}}else{notify(cells.length?'Belum tepat. Cuba perkataan lain.':'Pilih dalam satu garis lurus.');}paint();}
+function paint(){const colors=new Map();for(const [word,cells]of state.found){const color=COLORS[state.words.findIndex(w=>w[0]===word)];for(const i of cells)colors.set(i,color);}const shown=new Set(state.revealed?state.placements.filter(p=>!state.found.has(p.word)).flatMap(p=>p.cells):[]);const preview=new Set(state.preview),hinted=new Set(state.hinted);[...$('grid').children].forEach((b,i)=>{b.classList.toggle('found',colors.has(i));b.classList.toggle('preview',preview.has(i));b.classList.toggle('hinted',hinted.has(i));b.classList.toggle('answer',shown.has(i)&&!colors.has(i));b.style.setProperty('--found-bg',colors.get(i)||'#d5e9c8');});}
+function selectWord(a,b){if(!canPlay())return;const cells=path(a,b);state.selected=null;state.preview=[];if(cells.length<2){paint();if(!cells.length)notify('Pilih dalam satu garis lurus.');$('status').textContent='Seret huruf, atau ketik huruf pertama dan terakhir.';return;}const word=cells.map(i=>state.grid[Math.floor(i/SIZE)][i%SIZE]).join(''),back=[...word].reverse().join('');const target=state.words.find(w=>w[0]===word||w[0]===back)?.[0];if(target){if(state.found.has(target)){notify(target+' telah ditemui.');}else{state.found.set(target,cells);state.hinted=[];renderProgress();$('status').textContent='✓ '+target+' ditemui. '+(10-state.found.size)+' lagi!';announce(target+' ditemui. '+state.found.size+' daripada 10.');if(state.found.size===10)finish('won');}}else{notify(cells.length?'Belum tepat. Cuba perkataan lain.':'Pilih dalam satu garis lurus.');}paint();}
 function tap(i){if(!canPlay())return;if(state.selected===null){state.selected=i;state.preview=[i];$('status').textContent='Sekarang pilih huruf terakhir. Esc untuk batal.';paint();}else if(state.selected===i){cancelSelection();}else selectWord(state.selected,i);}
 function cancelSelection(){state.selected=null;state.preview=[];pointer=null;paint();if(state.status==='playing')$('status').textContent='Seret huruf, atau ketik huruf pertama dan terakhir.';}
 function indexAt(x,y){const grid=$('grid'),rect=grid.getBoundingClientRect(),gap=parseFloat(getComputedStyle(grid).columnGap)||0,c=Math.floor((x-rect.left)/(cellSize+gap)),r=Math.floor((y-rect.top)/(cellSize+gap));if(r<0||r>=SIZE||c<0||c>=SIZE||x<rect.left||y<rect.top||x>rect.right||y>rect.bottom)return null;return r*SIZE+c;}
@@ -124,7 +254,7 @@ $('grid').addEventListener('lostpointercapture',()=>{if(pointer)cancelSelection(
 $('grid').addEventListener('click',e=>{if(e.detail===0&&e.target.closest('.letter'))tap(+e.target.closest('.letter').dataset.i);});
 $('grid').addEventListener('keydown',e=>{const b=e.target.closest('.letter');if(!b)return;const i=+b.dataset.i,r=Math.floor(i/SIZE),c=i%SIZE;let next=i;if(e.key==='ArrowRight')next=r*SIZE+Math.min(SIZE-1,c+1);else if(e.key==='ArrowLeft')next=r*SIZE+Math.max(0,c-1);else if(e.key==='ArrowDown')next=Math.min(SIZE-1,r+1)*SIZE+c;else if(e.key==='ArrowUp')next=Math.max(0,r-1)*SIZE+c;else if(e.key==='Enter'||e.key===' '){e.preventDefault();tap(i);return;}else if(e.key==='Escape'){e.preventDefault();cancelSelection();return;}else return;e.preventDefault();b.tabIndex=-1;const nb=$('grid').children[next];nb.tabIndex=0;nb.focus();keyIndex=next;if(state.selected!==null){state.preview=path(state.selected,next);paint();}});
 function hint(){if(!canPlay()||state.hints>=3)return;const p=shuffle(state.placements.filter(p=>!state.found.has(p.word)))[0];if(!p)return;state.hints++;state.hinted=[p.cells[0]];$('hintCount').textContent=state.hints+'/3';$('hintBtn').disabled=state.hints>=3;paint();const b=$('grid').children[p.cells[0]];b.scrollIntoView({block:'nearest',inline:'nearest'});$('status').textContent='Petunjuk: huruf pertama '+p.word+' ditandakan.';announce($('status').textContent);}
-function openSetup(set=state.set){$('setSelect').value=set;$('timeSelect').value=state.seconds;$('setupNote').textContent=state.status==='playing'?'Menekan Mula akan menggantikan permainan semasa dengan grid baharu. Pemasa permainan semasa terus berjalan.':'Pilih tema dan tempoh permainan. Setiap permainan mempunyai 10 perkataan.';if(!$('setupDialog').open)$('setupDialog').showModal();}
+function openSetup(set=state.set){$('setSelect').value=set;$('timeSelect').value=state.seconds;$('setupNote').textContent=state.status==='playing'?'Menekan Mula akan menggantikan permainan semasa dengan grid baharu. Pemasa permainan semasa terus berjalan.':'Pilih tema dan tempoh permainan. Setiap pusingan memilih 10 daripada 30 perkataan bertema Belanjawan.';if(!$('setupDialog').open)$('setupDialog').showModal();}
 function finish(reason){if(state.status!=='playing')return;tickElapsed();state.status=reason;clearInterval(clock);state.selected=null;state.preview=[];pointer=null;$('hintBtn').disabled=true;$('answersBtn').disabled=false;$('timerBox').classList.remove('urgent');paint();if(reason==='revealed')return;for(const d of document.querySelectorAll('dialog[open]'))d.close();$('resultTitle').textContent=reason==='won'?'Hebat, semuanya ditemui!':'Masa tamat!';$('resultEyebrow').textContent=reason==='won'?'Misi tercapai':'Cabaran selesai';$('resultScore').textContent=state.found.size;$('resultText').textContent=reason==='won'?'Anda berjaya menemui kesemua 10 perkataan. Teruskan cabaran dengan tema yang lain.':'Anda menemui '+state.found.size+' perkataan. Semak papan atau cuba lagi dengan susunan baharu.';$('resultData').textContent=SETS[state.set].title+' · Masa digunakan: '+formatElapsed(state.elapsed)+' · Petunjuk: '+state.hints+'/3';$('status').textContent=reason==='won'?'Tahniah! Kesemua 10 perkataan ditemui.':'Masa tamat. '+state.found.size+'/10 perkataan ditemui.';$('resultDialog').showModal();announce($('resultTitle').textContent+' Skor '+state.found.size+' daripada 10.');}
 function tickElapsed(){state.elapsed=Math.floor((Date.now()-state.started)/1000);if(state.seconds)state.elapsed=Math.min(state.elapsed,state.seconds);}
 function formatElapsed(n){return Math.floor(n/60)+' min '+n%60+' saat';}
