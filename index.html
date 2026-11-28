@@ -492,13 +492,22 @@ const SETS = [
 
 const previousRounds = new Map();
 
+function hasNineLetters(word) {
+  return word.replace(/[^A-Z]/g, '').length >= 9;
+}
+
 function chooseRoundWords(pool, previous) {
-  const selected = shuffle([...pool]).slice(0, 10);
+  const shuffled = shuffle([...pool]);
+  const required = shuffled.filter(([word]) => hasNineLetters(word)).slice(0, 2);
+  const remaining = shuffled.filter(entry => !required.includes(entry));
+  const selected = [...required, ...remaining.slice(0, 10 - required.length)];
+
   if (previous && selected.every(([word]) => previous.has(word))) {
-    const alternative = shuffle(pool.filter(([word]) => !previous.has(word)))[0];
+    const alternative = remaining.find(([word]) => !previous.has(word));
     selected[9] = alternative;
   }
-  return selected;
+
+  return shuffle(selected);
 }
 
 const SIZE=14,DIRS=[[0,1],[1,0],[1,1],[-1,1],[0,-1],[-1,0],[-1,-1],[1,-1]],COLORS=['#cde7ce','#d1e8ee','#e9deaf','#e3d8ef','#cbe8df','#f0d5c5','#dce4b8','#d5def2','#eed2db','#cfdfd5'];
