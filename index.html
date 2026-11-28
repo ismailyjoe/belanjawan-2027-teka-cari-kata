@@ -26,7 +26,7 @@
   </section>
   <aside class="panel word-panel" aria-label="Senarai perkataan"><div class="word-head"><h2>Senarai perkataan</h2><span id="foundCount" class="count">0 / 10</span></div><p class="word-intro">Tandakan perkataan dalam grid. Senarai ini dikemas kini secara automatik.</p><ul id="wordList" class="word-list"></ul></aside>
  </main>
- <div class="under"><p>Terokai inisiatif Belanjawan 2027 melalui lima tema permainan. Susunan huruf dijana semula bagi setiap permainan. Rujuk portal rasmi untuk maklumat dan kelayakan inisiatif.</p><a href="https://manfaat.mof.gov.my/" target="_blank" rel="noopener noreferrer">Portal Manfaat MOF ↗</a></div>
+ <div class="under"><p>Terokai inisiatif Belanjawan 2027 melalui lima tema permainan. Susunan huruf dijana semula bagi setiap permainan. Sumber: <a href="https://www.mof.gov.my/portal/ms/berita/ucapan/ucapan-belanjawan-madani-kelima-tahun-2027">Ucapan Belanjawan 2027 (MOF)</a>. Ejaan grid menggunakan huruf besar tanpa ruang atau tanda sempang.</p><a href="https://manfaat.mof.gov.my/" target="_blank" rel="noopener noreferrer">Portal Manfaat MOF ↗</a></div>
 
 <div class="under" aria-label="Statistik permainan">
  <span>Jumlah dimainkan: <strong id="playCount" data-count="teka_cari_kata">—</strong></span>
@@ -34,7 +34,7 @@
 </div>
  <footer class="footer"><span>© 2027 · Made by IBJ</span><span>Teka Cari Kata · Belanjawan 2027</span></footer>
 </div>
-<dialog id="setupDialog" aria-labelledby="setupTitle"><p class="eyebrow">Mulakan cabaran</p><h2 id="setupTitle">Permainan baharu</h2><p id="setupNote">Pilih tema dan tempoh permainan. Setiap pusingan memilih 10 daripada 30 perkataan bertema Belanjawan.</p><label for="setSelect">Tema permainan</label><select id="setSelect"></select><label for="timeSelect">Tempoh masa</label><select id="timeSelect"><option value="300" selected>5 minit</option><option value="600">10 minit</option><option value="0">Tanpa had masa</option></select><div class="dialog-actions"><button id="cancelSetup">Batal</button><button id="confirmStart" class="primary">Mula →</button></div></dialog>
+<dialog id="setupDialog" aria-labelledby="setupTitle"><p class="eyebrow">Mulakan cabaran</p><h2 id="setupTitle">Permainan baharu</h2><p id="setupNote">Pilih tema dan tempoh permainan. Setiap pusingan memilih 10 daripada 20 perkataan bertema Belanjawan.</p><label for="setSelect">Tema permainan</label><select id="setSelect"></select><label for="timeSelect">Tempoh masa</label><select id="timeSelect"><option value="300" selected>5 minit</option><option value="600">10 minit</option><option value="0">Tanpa had masa</option></select><div class="dialog-actions"><button id="cancelSetup">Batal</button><button id="confirmStart" class="primary">Mula →</button></div></dialog>
 <dialog id="resultDialog" aria-labelledby="resultTitle"><p class="eyebrow" id="resultEyebrow">Cabaran selesai</p><h2 id="resultTitle">Masa tamat!</h2><div class="result-score"><span id="resultScore">0</span><small> / 10</small></div><p id="resultText"></p><div class="result-data" id="resultData"></div><div class="dialog-actions"><button id="reviewBtn">Semak papan</button><button id="replayBtn" class="primary">Main lagi →</button></div></dialog>
 <dialog id="answerDialog" aria-labelledby="answerTitle"><h2 id="answerTitle">Tamatkan permainan?</h2><p>Permainan akan ditamatkan dan semua perkataan yang belum ditemui akan ditunjukkan. Skor semasa anda dikekalkan.</p><div class="dialog-actions"><button id="cancelAnswers">Terus bermain</button><button id="confirmAnswers" class="primary">Lihat jawapan</button></div></dialog>
 <dialog id="helpDialog" aria-labelledby="helpTitle"><p class="eyebrow">Panduan ringkas</p><h2 id="helpTitle">Cara bermain</h2><ol class="help-steps"><li>Pilih satu daripada lima set. Pemasa lalai ialah <b>5 minit</b> dan bermula apabila anda menekan <b>Mula</b>.</li><li><b>Seret</b> dari huruf pertama ke huruf terakhir. Anda juga boleh <b>ketik huruf pertama, kemudian huruf terakhir</b>.</li><li>Cari secara melintang, menegak atau menyerong, termasuk dari arah terbalik.</li><li>Gunakan sehingga <b>3 petunjuk</b> untuk menyerlahkan huruf pertama bagi perkataan yang belum ditemui.</li><li>Papan kekunci: gunakan anak panah untuk bergerak, <b>Enter atau Space</b> untuk memilih hujung perkataan, dan <b>Esc</b> untuk membatalkan pilihan.</li></ol><div class="dialog-actions"><button id="closeHelp" class="primary">Faham, jom main</button></div></dialog>
@@ -63,427 +63,432 @@ async function updatePlayCount(increment = false) {
 }
 
 const SETS = [
- {title:'Pendidikan & Persekolahan',words:[['BAP','Bantuan Awal Persekolahan.'],['RMT','Rancangan Makanan Tambahan untuk murid.'],['MBPK','Elaun Murid Berkeperluan Khas.'],['TINGKATANENAM','Elaun sara hidup bagi pelajar Tingkatan 6.'],['BIASISWA','Bantuan tajaan dan biasiswa pendidikan.'],['SEKOLAH','Pembaikan tandas dan prasarana sekolah.'],['GURU','Latihan dan kebajikan warga pendidik.'],['BUKUTEKS','Skim pinjaman buku teks fizikal dan digital.'],['ASRAMA','Fasiliti dan kebajikan asrama murid.'],['PERMATA','Pusat perkembangan kanak-kanak.']]},
- {title:'Pendidikan Tinggi & Mahasiswa',words:[['FLYSISWA','Bantuan penerbangan untuk mahasiswa.'],['DAPURSISWA','Program menu mampu milik untuk pelajar.'],['PTPTN','Pembiayaan pendidikan tinggi.'],['VISTAKAMPUS','Kemudahan kediaman pelajar di IPTA.'],['MAHASISWA','Peluang menjana pendapatan melalui pekerjaan di kampus.'],['POLITEKNIK','Pengajian dan pemerkasaan TVET.'],['KAMPUS','Fasiliti internet dan kolej kediaman.'],['KPT','Kementerian Pendidikan Tinggi.'],['DISKAUN','Pengurangan bayaran balik pinjaman pendidikan.'],['MARA','Kemudahan pinjaman dan penajaan pelajaran.']]},
- {title:'Perlindungan Sosial & Persaraan',words:[['WARGAEMAS','Bantuan untuk golongan warga emas.'],['ISARAAN','Caruman padanan bagi simpanan persaraan.'],['ISURI','Insentif caruman persaraan bagi suri rumah.'],['IEMAS','Pilihan pengeluaran simpanan persaraan bulanan.'],['PERKESO','Perlindungan sosial bagi pekerja dan sukarelawan.'],['SUKARELAWAN','Perlindungan sosial bagi khidmat sukarela.'],['KWSP','Kumpulan Wang Simpanan Pekerja.'],['LINDUNG','Skim perlindungan keselamatan petugas komuniti.'],['PENCEN','Jaringan keselamatan sosial pada usia persaraan.'],['KRONIK','Bantuan penjagaan pesakit kronik.']]},
- {title:'Bantuan Rakyat & Sara Hidup',words:[['STR','Sumbangan Tunai Rahmah.'],['SARA','Sumbangan Asas Rahmah.'],['BUDI','Penyasaran subsidi bahan api.'],['MANFAAT','Portal rasmi untuk menyemak inisiatif bantuan.'],['MYLESEN','Program lesen motosikal bagi golongan B40.'],['PETROL','Bahan api dalam pelaksanaan subsidi bersasar.'],['DIESEL','Bahan api di bawah penyasaran subsidi.'],['RAHMAH','Program jualan barangan keperluan.'],['DIGITALID','Akses identiti digital kepada perkhidmatan kerajaan.'],['SUBSIDI','Sokongan kerajaan untuk kebajikan rakyat.']]},
- {title:'Kesihatan & Komuniti MADANI',words:[['MEDIASAS','Pelan perlindungan asas mampu milik.'],['MYSALAM','Skim perlindungan kesihatan untuk golongan B40.'],['MYDESA','Pembangunan infrastruktur dan ekonomi desa.'],['HOSPITAL','Fasiliti dan peralatan rawatan awam.'],['KLINIK','Pembaikan kemudahan kesihatan dan klinik desa.'],['SOLAR','Pemasangan bumbung solar dan teknologi bersih.'],['HIJAU','Insentif bagi teknologi dan aset hijau.'],['MOBILITI','Pembiayaan bagi mobiliti lestari.'],['KOMUNITI','Pemerkasaan pertubuhan kemasyarakatan.'],['MADANI','Ihsan, kemampanan dan kesejahteraan.']]}
+  {
+    "title": "Pendidikan & Persekolahan",
+    "words": [
+      [
+        "BAP",
+        "Bantuan Awal Persekolahan naik kepada RM200 bagi setiap murid yang layak."
+      ],
+      [
+        "RMT",
+        "Rancangan Makanan Tambahan menerima RM870 juta untuk lebih 800,000 murid."
+      ],
+      [
+        "TINGKATANENAM",
+        "Pelajar Tingkatan Enam diberi elaun sara hidup RM2,500."
+      ],
+      [
+        "PEMBANTUGURU",
+        "Pengambilan pembantu guru diperluas ke 200 sekolah rendah berkepadatan tinggi."
+      ],
+      [
+        "MATRIKULASI",
+        "Kolej matrikulasi baharu sedang dibina di Marang, Terengganu."
+      ],
+      [
+        "MARANG",
+        "Lokasi pembinaan kolej matrikulasi baharu."
+      ],
+      [
+        "SEKOLAHDAIF",
+        "Hampir RM1.3 bilion disediakan untuk menaik taraf 682 sekolah daif."
+      ],
+      [
+        "BILIKDARJAH",
+        "Sebanyak 3,500 bilik darjah tambahan dijangka siap melalui kaedah IBS."
+      ],
+      [
+        "IBS",
+        "Kaedah pembinaan berindustri digunakan bagi bilik darjah tambahan."
+      ],
+      [
+        "PRASEKOLAH",
+        "Bangunan prasekolah baharu dirancang di SK Bulu Silou."
+      ],
+      [
+        "BULUSILOU",
+        "Sekolah di Keningau ini dikenal pasti untuk pembinaan bangunan prasekolah."
+      ],
+      [
+        "SERICHEMOR",
+        "Sekolah di Ipoh ini disenaraikan dalam projek pembinaan sekolah."
+      ],
+      [
+        "SERENIA",
+        "Kompleks sekolah baharu dirancang di Bandar Serenia, Sepang."
+      ],
+      [
+        "LADANGPAMOL",
+        "Sekolah Tamil di Ladang Pamol disenaraikan untuk pembinaan gantian penuh."
+      ],
+      [
+        "TABUNGSEKOLAH",
+        "Tabung Sumbangan Wang Awam Sekolah ditambah baik bagi menampung keperluan sekolah."
+      ],
+      [
+        "ASRAMA",
+        "Asrama khas dengan 100 tempat dirancang untuk murid Orang Asli di Kinta."
+      ],
+      [
+        "EMBPK",
+        "Elaun Murid Berkeperluan Pendidikan Khas naik kepada RM200 sebulan."
+      ],
+      [
+        "PERMATAKURNIA",
+        "Dua pusat baharu untuk kanak-kanak autistik dirancang di Melaka dan Pahang."
+      ],
+      [
+        "TABIKA",
+        "Lebih 130 kelas Tabika Tunas Istimewa baharu diumumkan untuk kawasan desa."
+      ],
+      [
+        "DARJAHSATU",
+        "Bilik darjah tambahan disediakan bagi menampung pertambahan murid Darjah Satu."
+      ]
+    ]
+  },
+  {
+    "title": "Pendidikan Tinggi & Mahasiswa",
+    "words": [
+      [
+        "FLYSISWA",
+        "Bantuan tiket penerbangan FlySiswa MADANI naik daripada RM400 kepada RM500."
+      ],
+      [
+        "DAPURSISWA",
+        "Program makanan siswa ini diperluas ke politeknik dan institut pendidikan guru."
+      ],
+      [
+        "PTPTN",
+        "Peminjam berpendapatan sehingga RM2,500 sebulan layak mendapat penangguhan bayaran balik."
+      ],
+      [
+        "VISTAKAMPUS",
+        "Projek kediaman siswa di enam universiti terpilih disokong pelaburan KWAP."
+      ],
+      [
+        "POLITEKNIK",
+        "Politeknik termasuk dalam peluasan Program Dapur Siswa MADANI."
+      ],
+      [
+        "IPG",
+        "Institut pendidikan guru turut termasuk dalam peluasan Dapur Siswa."
+      ],
+      [
+        "KPT",
+        "Kementerian Pendidikan Tinggi menerima peruntukan RM19.1 bilion."
+      ],
+      [
+        "DISKAUNPTPTN",
+        "Diskaun 10% diumumkan untuk peminjam tanpa tunggakan yang membayar secara teratur."
+      ],
+      [
+        "AUKU",
+        "KPT menyediakan kerangka perundangan baharu untuk menggantikan AUKU."
+      ],
+      [
+        "AUTONOMI",
+        "Autonomi universiti ialah salah satu perkara dalam kerangka perundangan pendidikan tinggi baharu."
+      ],
+      [
+        "BILIKKULIAH",
+        "Bilik kuliah termasuk dalam peruntukan RM800 juta bagi penambahbaikan prasarana dan penggantian peralatan."
+      ],
+      [
+        "ALUMNI",
+        "Sumbangan alumni kepada universiti awam layak mendapat potongan cukai tertakluk pada had."
+      ],
+      [
+        "PENANGGUHAN",
+        "Bayaran balik PTPTN ditangguhkan bagi peminjam dengan pendapatan sehingga RM2,500 sebulan."
+      ],
+      [
+        "BAYARANMINIMUM",
+        "Bayaran minimum PTPTN sebanyak RM50 diumumkan bagi banjaran pendapatan yang ditetapkan."
+      ],
+      [
+        "MAJIKAN",
+        "Potongan cukai diumumkan bagi majikan yang membayar balik PTPTN bagi pihak pekerja."
+      ],
+      [
+        "RESIDENSIUM",
+        "Fasa pertama Residensi Mahasiswa Universiti Malaya dijadual siap pada 2031."
+      ],
+      [
+        "KWAP",
+        "KWAP akan melabur RM750 juta bagi Projek Vista Kampus."
+      ],
+      [
+        "UNISZA",
+        "UniSZA ialah antara universiti yang terlibat dalam Projek Vista Kampus."
+      ],
+      [
+        "UITM",
+        "UiTM ialah antara universiti yang terlibat dalam Projek Vista Kampus."
+      ],
+      [
+        "MENUKASIHSISWA",
+        "Menu berharga RM5 disediakan melalui peluasan Dapur Siswa."
+      ]
+    ]
+  },
+  {
+    "title": "Perlindungan Sosial & Persaraan",
+    "words": [
+      [
+        "WARGAEMAS",
+        "Bantuan warga emas ditingkatkan kepada RM1.3 bilion."
+      ],
+      [
+        "IEMAS",
+        "Ahli KWSP pada usia 55 dan 60 tahun boleh memilih pengeluaran bulanan."
+      ],
+      [
+        "KWSP",
+        "Baki simpanan ahli yang memilih i-Emas boleh terus menjana dividen."
+      ],
+      [
+        "DIVIDEN",
+        "Baki dalam simpanan KWSP melalui i-Emas terus menjana dividen."
+      ],
+      [
+        "SHARIAH",
+        "Ahli KWSP dengan Simpanan Shariah boleh membayar zakat terus daripada dividen."
+      ],
+      [
+        "ZAKAT",
+        "Kemudahan membayar zakat daripada dividen tersedia kepada ahli KWSP yang memilih Simpanan Shariah."
+      ],
+      [
+        "NICE",
+        "Dua pusat kepakaran penjagaan bersepadu dirancang di Pulau Pinang dan Sarawak."
+      ],
+      [
+        "HRDCORP",
+        "Lebih RM40 juta disediakan melalui HRD Corp untuk melatih pekerja penjagaan warga emas."
+      ],
+      [
+        "CUKAIJAGAAN",
+        "Cukai perkhidmatan bagi jagaan warga emas turun daripada 8% kepada 6%."
+      ],
+      [
+        "YURANJAGAAN",
+        "Pengecualian penuh cukai perkhidmatan diberikan bagi yuran jagaan warga emas sehingga RM96,000 setahun."
+      ],
+      [
+        "OKU",
+        "Peruntukan bantuan orang kurang upaya meningkat kepada RM1.5 bilion."
+      ],
+      [
+        "PESAKITKRONIK",
+        "Bantuan penjagaan pesakit kronik dan OKU terlantar dinaikkan kepada RM600 sebulan."
+      ],
+      [
+        "EPOKU",
+        "Ambang pendapatan bagi Elaun Pekerja Orang Kurang Upaya dinaikkan kepada RM2,000."
+      ],
+      [
+        "PDK",
+        "Sebanyak 15 premis Pemulihan Dalam Komuniti akan dinaik taraf menjadi pusat terapi khusus."
+      ],
+      [
+        "PUSATTERAPI",
+        "Pusat terapi khusus disediakan melalui naik taraf premis PDK."
+      ],
+      [
+        "SINDROMDOWN",
+        "Naik taraf PDK disasarkan untuk memanfaatkan OKU Sindrom Down berdaftar."
+      ],
+      [
+        "PENJAGAOKU",
+        "Seramai 3,000 penjaga OKU baharu akan dibekalkan kemahiran khusus."
+      ],
+      [
+        "PERKESO",
+        "Pakej bantuan pekerja gig yang dibiayai bersama Kerajaan dan Grab meliputi caruman PERKESO."
+      ],
+      [
+        "PEKERJAGIG",
+        "Pakej RM160 juta diumumkan untuk pendapatan dan kebajikan pekerja e-hailing serta p-hailing."
+      ],
+      [
+        "PENGELUARAN",
+        "i-Emas menawarkan pilihan pengeluaran bulanan kepada ahli KWSP pada usia yang ditetapkan."
+      ]
+    ]
+  },
+  {
+    "title": "Bantuan Rakyat & Sara Hidup",
+    "words": [
+      [
+        "STR",
+        "Peruntukan gabungan STR dan SARA bagi 2027 naik kepada RM16 bilion."
+      ],
+      [
+        "SARA",
+        "Penerima STR akan mendapat SARA sehingga RM150 sebulan."
+      ],
+      [
+        "SARAMADANI",
+        "Dua pemberian RM100 diumumkan bagi rakyat dewasa selain penerima STR."
+      ],
+      [
+        "BUDI95",
+        "Ucapan belanjawan menjelaskan kelayakan BUDI95 sebanyak 300 liter sebulan."
+      ],
+      [
+        "BUDIDIESEL",
+        "Ucapan belanjawan menyatakan kelayakan 400 liter sebulan bagi jip dan pikap."
+      ],
+      [
+        "BARANGBASAH",
+        "Penggunaan SARA diperluas kepada barangan basah dan segar."
+      ],
+      [
+        "PASARTANI",
+        "Pasar Tani dan Tamu terpilih menjadi saluran pembelian barang segar menggunakan SARA."
+      ],
+      [
+        "TAMU",
+        "Tamu termasuk dalam peluasan saluran penebusan SARA untuk barangan segar."
+      ],
+      [
+        "FAMA",
+        "Pasar Tani dan Tamu di bawah FAMA menyokong peluasan penebusan SARA."
+      ],
+      [
+        "KEDAIRUNCIT",
+        "Kedai runcit kecil termasuk dalam rangkaian rakan niaga SARA."
+      ],
+      [
+        "RAKANNIAGA",
+        "Rangkaian premis yang menerima SARA meliputi kedai kecil dan koperasi."
+      ],
+      [
+        "KOPERASI",
+        "Koperasi termasuk dalam premis rakan niaga SARA."
+      ],
+      [
+        "JUALANRAHMAH",
+        "Sebanyak 30,000 penganjuran Jualan RAHMAH disasarkan meliputi semua DUN."
+      ],
+      [
+        "AGROMADANI",
+        "Jualan Agro MADANI menawarkan hasil tani segar pada harga sehingga 30% lebih rendah."
+      ],
+      [
+        "RAHMAHBORONG",
+        "Jualan RAHMAH MADANI Borong turut dianjurkan untuk membantu peniaga kecil."
+      ],
+      [
+        "MESINLAYANDIRI",
+        "Mesin layan diri turut termasuk dalam saluran penganjuran Jualan RAHMAH."
+      ],
+      [
+        "PPR",
+        "Kawasan Program Perumahan Rakyat di bandar menjadi antara tumpuan peluasan Jualan RAHMAH."
+      ],
+      [
+        "PEDALAMAN",
+        "RM250 juta diperuntukkan bagi peluasan pengedaran barangan asas di kawasan desa dan pedalaman."
+      ],
+      [
+        "GAJIMINIMUM",
+        "Gaji minimum RM2,000 diumumkan mulai Jun 2027, tertakluk pada pengecualian yang dinyatakan."
+      ],
+      [
+        "PELEPASANCUKAI",
+        "Had pelepasan cukai individu diumumkan naik daripada RM9,000 kepada RM12,000."
+      ]
+    ]
+  },
+  {
+    "title": "Kesihatan & Komuniti MADANI",
+    "words": [
+      [
+        "MEDIASAS",
+        "Pelan kesihatan mampu milik Medi Asas diumumkan untuk pelancaran mulai Januari 2027."
+      ],
+      [
+        "MYSALAM",
+        "Skim perlindungan kesihatan MySalam diteruskan pada 2027."
+      ],
+      [
+        "PEKAB40",
+        "RM80 juta disediakan untuk saringan serta bantuan kesihatan kepada penerima STR dan pasangan yang layak."
+      ],
+      [
+        "BUAI",
+        "Program BuAi menawarkan rawatan kesuburan mampu milik kepada 2,000 pasangan."
+      ],
+      [
+        "TALASEMIA",
+        "Saringan percuma diperluas kepada suami dan anak pembawa talasemia."
+      ],
+      [
+        "DOKTORKONTRAK",
+        "Lebih 9,000 doktor kontrak akan ditawarkan jawatan tetap pada 2027."
+      ],
+      [
+        "JURURAWAT",
+        "Insentif pos basik untuk jururawat dan anggota paramedik naik kepada RM200 sebulan."
+      ],
+      [
+        "PARAMEDIK",
+        "Anggota paramedik termasuk penerima kenaikan insentif pos basik."
+      ],
+      [
+        "POSBASIK",
+        "Kadar insentif pos basik naik daripada RM100 kepada RM200 sebulan."
+      ],
+      [
+        "DOKTORUDARA",
+        "Insentif perkhidmatan kesihatan udara naik daripada RM30 kepada RM100."
+      ],
+      [
+        "SUMBERLUAR",
+        "RM200 juta diperuntukkan bagi menyumber luar rawatan pesakit ke hospital lain."
+      ],
+      [
+        "DEWANBEDAH",
+        "Kerjasama dengan fasiliti swasta merangkumi penggunaan dewan bedah oleh sektor awam."
+      ],
+      [
+        "REKODPERUBATAN",
+        "SKMM melabur RM1 bilion bagi pelaksanaan sistem rekod perubatan elektronik."
+      ],
+      [
+        "ECKAPS",
+        "Portal e-CKAPS membolehkan pelesenan fasiliti kesihatan swasta secara dalam talian mulai 2027."
+      ],
+      [
+        "TABUNGRAWATAN",
+        "Dana Tabung Bantuan Perubatan ditingkatkan kepada RM60 juta."
+      ],
+      [
+        "REMBAU",
+        "Kompleks Kesihatan Bersepadu Rembau disenaraikan antara fasiliti baharu."
+      ],
+      [
+        "GERIK",
+        "Kompleks Kesihatan Bersepadu di Gerik termasuk dalam senarai pembinaan fasiliti baharu."
+      ],
+      [
+        "KLINIKDAIF",
+        "Peruntukan RM1.2 bilion untuk prasarana kesihatan turut meliputi naik taraf baki klinik daif."
+      ],
+      [
+        "LAMPUJALAN",
+        "Pemasangan lampu jalan kampung termasuk dalam peruntukan prasarana asas desa."
+      ],
+      [
+        "SOLARBUMBUNG",
+        "TNB melaksanakan pemasangan panel solar bumbung di rumah kebajikan dan rumah ibadat."
+      ]
+    ]
+  }
 ];
-const EXTRA_WORDS = [
-  [
-    [
-      "BAJETSEKOLAH",
-      "Perancangan belanja untuk operasi dan pembelajaran di sekolah."
-    ],
-    [
-      "GERANSEKOLAH",
-      "Dana kepada sekolah bagi membiayai keperluan yang diluluskan."
-    ],
-    [
-      "YURANSEKOLAH",
-      "Kos berkaitan persekolahan yang perlu ditanggung keluarga."
-    ],
-    [
-      "PAKAIANSEKOLAH",
-      "Pakaian seragam ialah sebahagian daripada kos persediaan sekolah."
-    ],
-    [
-      "KASUTSEKOLAH",
-      "Kasut sekolah termasuk dalam keperluan persediaan murid."
-    ],
-    [
-      "BEGALAS",
-      "Beg sekolah ialah antara kelengkapan yang menambah kos awal persekolahan."
-    ],
-    [
-      "ALATTULIS",
-      "Keperluan asas seperti pensel dan pen untuk pembelajaran murid."
-    ],
-    [
-      "BUKULATIHAN",
-      "Bahan latihan yang perlu disediakan untuk pembelajaran harian."
-    ],
-    [
-      "MAKANANMURID",
-      "Perbelanjaan bagi menyokong akses murid kepada makanan berkhasiat."
-    ],
-    [
-      "SUSUSEKOLAH",
-      "Bekalan susu sebagai salah satu bentuk sokongan pemakanan murid."
-    ],
-    [
-      "NAIKTARAF",
-      "Peruntukan untuk menambah baik kemudahan sekolah sedia ada."
-    ],
-    [
-      "SELENGGARA",
-      "Kos menjaga bangunan dan peralatan sekolah supaya selamat digunakan."
-    ],
-    [
-      "PERUNTUKAN",
-      "Jumlah dana yang disediakan untuk tujuan pendidikan tertentu."
-    ],
-    [
-      "INFRASTRUKTUR",
-      "Kemudahan fizikal seperti bilik darjah, tandas dan makmal sekolah."
-    ],
-    [
-      "BANTUANMURID",
-      "Sokongan kepada murid bagi mengurangkan beban kos pendidikan."
-    ],
-    [
-      "ELAUNMURID",
-      "Bayaran bantuan bagi menampung keperluan murid yang layak."
-    ],
-    [
-      "TAJAAN",
-      "Pembiayaan pendidikan yang tertakluk pada syarat pemberi dana."
-    ],
-    [
-      "MURIDKHAS",
-      "Sokongan pendidikan dan kemudahan yang memenuhi keperluan murid berkeperluan khas."
-    ],
-    [
-      "PRASEKOLAH",
-      "Peruntukan pendidikan awal sebelum murid memasuki sekolah rendah."
-    ],
-    [
-      "PEDALAMAN",
-      "Keperluan akses pendidikan bagi murid di kawasan yang jauh daripada kemudahan."
-    ]
-  ],
-  [
-    [
-      "BIASISWASISWA",
-      "Bantuan kewangan untuk membantu menampung kos pengajian mahasiswa."
-    ],
-    [
-      "TAJAAN",
-      "Sokongan kewangan bagi pengajian mengikut syarat penaja."
-    ],
-    [
-      "PENAJAAN",
-      "Pembiayaan pengajian yang boleh meliputi yuran atau elaun."
-    ],
-    [
-      "PINJAMAN",
-      "Pembiayaan yang perlu dibayar balik mengikut terma skim."
-    ],
-    [
-      "KOSKULIAH",
-      "Kos mengikuti pengajian yang boleh dibantu melalui pembiayaan pendidikan."
-    ],
-    [
-      "YURAN",
-      "Bayaran kepada institusi pendidikan bagi pengajian atau perkhidmatan tertentu."
-    ],
-    [
-      "KOSASRAMA",
-      "Belanja tempat tinggal yang menjadi sebahagian daripada kos pengajian."
-    ],
-    [
-      "KOLEJKEDIAMAN",
-      "Kemudahan kediaman pelajar yang melibatkan peruntukan pembinaan dan penyelenggaraan."
-    ],
-    [
-      "ELAUNSISWA",
-      "Bayaran bagi membantu pelajar menampung kos sara hidup ketika belajar."
-    ],
-    [
-      "BANTUANSISWA",
-      "Sokongan kepada pelajar bagi mengurangkan beban kos pendidikan."
-    ],
-    [
-      "VOKASIONAL",
-      "Pendidikan berasaskan kemahiran kerja yang memerlukan latihan dan peralatan."
-    ],
-    [
-      "TVET",
-      "Pendidikan dan latihan teknikal serta vokasional yang menyediakan kemahiran pekerjaan."
-    ],
-    [
-      "PEMBIAYAAN",
-      "Dana untuk menampung kos pengajian dan keperluan pelajar."
-    ],
-    [
-      "LATIHAN",
-      "Peruntukan untuk membangunkan kemahiran yang diperlukan di tempat kerja."
-    ],
-    [
-      "KEMAHIRAN",
-      "Kecekapan yang dibina melalui pendidikan dan latihan untuk meningkatkan kebolehpasaran."
-    ],
-    [
-      "DANA",
-      "Sumber kewangan yang diperuntukkan bagi program pelajar atau institusi."
-    ],
-    [
-      "SISWAZAH",
-      "Pelajar program lanjutan yang boleh disokong melalui pembiayaan pengajian."
-    ],
-    [
-      "PENYELIDIKAN",
-      "Aktiviti akademik yang dapat dibiayai melalui geran penyelidikan."
-    ],
-    [
-      "INOVASI",
-      "Pembangunan idea dan teknologi yang boleh disokong melalui dana institusi."
-    ],
-    [
-      "KEUSAHAWANAN",
-      "Latihan dan sokongan untuk membantu pelajar membangunkan usaha niaga."
-    ]
-  ],
-  [
-    [
-      "CARUMAN",
-      "Bayaran yang membina simpanan persaraan atau membiayai perlindungan sosial."
-    ],
-    [
-      "DIVIDEN",
-      "Pulangan yang dikreditkan kepada simpanan mengikut prestasi dan peraturan skim."
-    ],
-    [
-      "SIMPANAN",
-      "Wang yang diketepikan untuk kegunaan selepas bersara."
-    ],
-    [
-      "PERSARAAN",
-      "Fasa selepas tamat pekerjaan yang memerlukan perancangan pendapatan."
-    ],
-    [
-      "PESARA",
-      "Golongan yang boleh menerima pencen atau bergantung pada simpanan persaraan."
-    ],
-    [
-      "WARIS",
-      "Ahli keluarga yang mungkin layak menuntut faedah tertentu mengikut peraturan skim."
-    ],
-    [
-      "PENAMA",
-      "Individu yang dinamakan untuk mengurus atau menerima manfaat mengikut peraturan skim."
-    ],
-    [
-      "ANUITI",
-      "Bayaran berkala yang boleh membantu menyediakan pendapatan semasa persaraan."
-    ],
-    [
-      "TAKAFUL",
-      "Perlindungan berasaskan prinsip syariah terhadap risiko tertentu."
-    ],
-    [
-      "INSURANS",
-      "Perlindungan kewangan terhadap risiko yang ditetapkan dalam polisi."
-    ],
-    [
-      "FAEDAH",
-      "Bayaran atau perkhidmatan yang diterima oleh peserta skim yang layak."
-    ],
-    [
-      "PAMPASAN",
-      "Bayaran perlindungan bagi kejadian yang diliputi skim."
-    ],
-    [
-      "HILANGUPAYA",
-      "Keadaan yang boleh melayakkan seseorang menerima sokongan tertakluk pada syarat skim."
-    ],
-    [
-      "PEMULIHAN",
-      "Khidmat rawatan dan latihan untuk membantu pemulihan fungsi atau kembali bekerja."
-    ],
-    [
-      "PENJAGA",
-      "Individu yang menjaga orang lain dan mungkin memerlukan sokongan penjagaan."
-    ],
-    [
-      "TANGGUNGAN",
-      "Ahli keluarga yang bergantung pada pendapatan atau perlindungan seseorang."
-    ],
-    [
-      "PENCARUM",
-      "Individu yang membayar caruman kepada skim perlindungan atau persaraan."
-    ],
-    [
-      "MAJIKAN",
-      "Pihak yang boleh diwajibkan mencarum bagi pekerja mengikut skim berkaitan."
-    ],
-    [
-      "PEKERJA",
-      "Golongan yang dilindungi melalui skim caruman dan faedah pekerjaan."
-    ],
-    [
-      "ELAUN",
-      "Bayaran bantuan untuk memenuhi keperluan penerima yang layak."
-    ]
-  ],
-  [
-    [
-      "BAKULDAPUR",
-      "Barangan dapur yang menjadi sebahagian daripada kos sara hidup keluarga."
-    ],
-    [
-      "BARANGASAS",
-      "Keperluan harian yang lazimnya diberi perhatian dalam bantuan sara hidup."
-    ],
-    [
-      "BELANJA",
-      "Jumlah wang yang digunakan isi rumah bagi keperluan harian."
-    ],
-    [
-      "PENDAPATAN",
-      "Ukuran yang boleh digunakan untuk menyasarkan bantuan kepada isi rumah."
-    ],
-    [
-      "ISIRUMAH",
-      "Unit keluarga yang lazim digunakan untuk menilai kos hidup dan kelayakan bantuan."
-    ],
-    [
-      "BANTUAN",
-      "Sokongan bagi mengurangkan beban kewangan golongan yang layak."
-    ],
-    [
-      "TUNAI",
-      "Bentuk bantuan wang yang boleh digunakan untuk membayar perbelanjaan harian."
-    ],
-    [
-      "BAUCAR",
-      "Kupon bernilai tertentu untuk mendapatkan barangan atau perkhidmatan yang layak."
-    ],
-    [
-      "TEBUSAN",
-      "Penggunaan bantuan atau baucar bagi pembelian yang dibenarkan."
-    ],
-    [
-      "PASARTANI",
-      "Saluran jualan hasil pertanian yang membantu pengguna mendapatkan barangan segar."
-    ],
-    [
-      "HARGA",
-      "Kos barangan yang mempengaruhi kuasa beli isi rumah."
-    ],
-    [
-      "SARAHIDUP",
-      "Belanja untuk memenuhi keperluan seperti makanan, pengangkutan dan tempat tinggal."
-    ],
-    [
-      "KEPERLUAN",
-      "Barangan dan perkhidmatan asas yang perlu dibiayai oleh isi rumah."
-    ],
-    [
-      "PENGGUNA",
-      "Pembeli yang terkesan oleh perubahan harga dan boleh mendapat manfaat daripada langkah bantuan."
-    ],
-    [
-      "JIMAT",
-      "Mengurangkan belanja melalui pilihan pembelian atau bantuan kos sara hidup."
-    ],
-    [
-      "BAKULMAKANAN",
-      "Kumpulan barangan makanan yang boleh digunakan untuk menilai kos keperluan keluarga."
-    ],
-    [
-      "BEKALAN",
-      "Ketersediaan barangan yang turut mempengaruhi harga kepada pengguna."
-    ],
-    [
-      "PERBELANJAAN",
-      "Jumlah yang dibayar bagi keperluan keluarga dalam sesuatu tempoh."
-    ],
-    [
-      "KELAYAKAN",
-      "Syarat yang menentukan siapa boleh menerima sesuatu bantuan."
-    ],
-    [
-      "PERMOHONAN",
-      "Proses mengemukakan maklumat bagi mendapatkan bantuan yang ditawarkan."
-    ]
-  ],
-  [
-    [
-      "VAKSIN",
-      "Bekalan yang menyokong pencegahan penyakit melalui peruntukan kesihatan awam."
-    ],
-    [
-      "IMUNISASI",
-      "Program pencegahan penyakit yang melibatkan kos bekalan dan penyampaian perkhidmatan."
-    ],
-    [
-      "SARINGAN",
-      "Pemeriksaan awal yang boleh dibiayai untuk mengesan masalah kesihatan."
-    ],
-    [
-      "UBATUBATAN",
-      "Bekalan farmaseutikal yang perlu dirancang dalam perbelanjaan kesihatan."
-    ],
-    [
-      "UBAT",
-      "Keperluan rawatan yang melibatkan perolehan dan bekalan di fasiliti awam."
-    ],
-    [
-      "RAWATAN",
-      "Perkhidmatan yang dibiayai melalui peruntukan fasiliti dan tenaga kesihatan."
-    ],
-    [
-      "PESAKIT",
-      "Penerima perkhidmatan yang mendapat manfaat daripada kemudahan kesihatan awam."
-    ],
-    [
-      "AMBULANS",
-      "Kenderaan yang memerlukan peruntukan untuk respons dan pengangkutan pesakit."
-    ],
-    [
-      "KECEMASAN",
-      "Perkhidmatan segera yang memerlukan petugas, peralatan dan kapasiti rawatan."
-    ],
-    [
-      "PEMAKANAN",
-      "Aspek kesihatan yang boleh disokong melalui pendidikan dan program pemakanan."
-    ],
-    [
-      "KECERGASAN",
-      "Aktiviti kesihatan yang boleh disokong melalui program komuniti."
-    ],
-    [
-      "GOTONGROYONG",
-      "Aktiviti bersama yang boleh disokong melalui dana komuniti setempat."
-    ],
-    [
-      "KEJIRANAN",
-      "Kawasan yang mendapat manfaat daripada kemudahan dan program komuniti."
-    ],
-    [
-      "KESEJAHTERAAN",
-      "Matlamat peruntukan yang menyokong kesihatan serta kualiti hidup rakyat."
-    ],
-    [
-      "KEBAJIKAN",
-      "Bantuan dan perkhidmatan untuk individu atau keluarga yang memerlukan."
-    ],
-    [
-      "KESUKARELAAN",
-      "Khidmat masyarakat yang boleh disokong melalui latihan dan perlindungan sukarelawan."
-    ],
-    [
-      "DERMA",
-      "Sumbangan yang boleh melengkapi pembiayaan bagi aktiviti masyarakat."
-    ],
-    [
-      "DANA",
-      "Wang yang disediakan untuk membiayai inisiatif kesihatan atau komuniti."
-    ],
-    [
-      "DANAKOMUNITI",
-      "Peruntukan untuk membiayai aktiviti dan keperluan masyarakat setempat."
-    ],
-    [
-      "KITKESIHATAN",
-      "Set barangan asas kesihatan yang boleh dibiayai bagi program komuniti."
-    ]
-  ]
-];
-EXTRA_WORDS.forEach((words, index) => {
-  SETS[index].words.push(...words);
-});
 
 const previousRounds = new Map();
 
