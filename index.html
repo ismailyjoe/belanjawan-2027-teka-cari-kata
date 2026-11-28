@@ -71,118 +71,418 @@ const SETS = [
 ];
 const EXTRA_WORDS = [
   [
-    "BAJETSEKOLAH",
-    "GERANSEKOLAH",
-    "YURANSEKOLAH",
-    "PAKAIANSEKOLAH",
-    "KASUTSEKOLAH",
-    "BEGALAS",
-    "ALATTULIS",
-    "BUKULATIHAN",
-    "MAKANANMURID",
-    "SUSUSEKOLAH",
-    "NAIKTARAF",
-    "SELENGGARA",
-    "PERUNTUKAN",
-    "INFRASTRUKTUR",
-    "BANTUANMURID",
-    "ELAUNMURID",
-    "TAJAAN",
-    "MURIDKHAS",
-    "PRASEKOLAH",
-    "PEDALAMAN"
+    [
+      "BAJETSEKOLAH",
+      "Perancangan belanja untuk operasi dan pembelajaran di sekolah."
+    ],
+    [
+      "GERANSEKOLAH",
+      "Dana kepada sekolah bagi membiayai keperluan yang diluluskan."
+    ],
+    [
+      "YURANSEKOLAH",
+      "Kos berkaitan persekolahan yang perlu ditanggung keluarga."
+    ],
+    [
+      "PAKAIANSEKOLAH",
+      "Pakaian seragam ialah sebahagian daripada kos persediaan sekolah."
+    ],
+    [
+      "KASUTSEKOLAH",
+      "Kasut sekolah termasuk dalam keperluan persediaan murid."
+    ],
+    [
+      "BEGALAS",
+      "Beg sekolah ialah antara kelengkapan yang menambah kos awal persekolahan."
+    ],
+    [
+      "ALATTULIS",
+      "Keperluan asas seperti pensel dan pen untuk pembelajaran murid."
+    ],
+    [
+      "BUKULATIHAN",
+      "Bahan latihan yang perlu disediakan untuk pembelajaran harian."
+    ],
+    [
+      "MAKANANMURID",
+      "Perbelanjaan bagi menyokong akses murid kepada makanan berkhasiat."
+    ],
+    [
+      "SUSUSEKOLAH",
+      "Bekalan susu sebagai salah satu bentuk sokongan pemakanan murid."
+    ],
+    [
+      "NAIKTARAF",
+      "Peruntukan untuk menambah baik kemudahan sekolah sedia ada."
+    ],
+    [
+      "SELENGGARA",
+      "Kos menjaga bangunan dan peralatan sekolah supaya selamat digunakan."
+    ],
+    [
+      "PERUNTUKAN",
+      "Jumlah dana yang disediakan untuk tujuan pendidikan tertentu."
+    ],
+    [
+      "INFRASTRUKTUR",
+      "Kemudahan fizikal seperti bilik darjah, tandas dan makmal sekolah."
+    ],
+    [
+      "BANTUANMURID",
+      "Sokongan kepada murid bagi mengurangkan beban kos pendidikan."
+    ],
+    [
+      "ELAUNMURID",
+      "Bayaran bantuan bagi menampung keperluan murid yang layak."
+    ],
+    [
+      "TAJAAN",
+      "Pembiayaan pendidikan yang tertakluk pada syarat pemberi dana."
+    ],
+    [
+      "MURIDKHAS",
+      "Sokongan pendidikan dan kemudahan yang memenuhi keperluan murid berkeperluan khas."
+    ],
+    [
+      "PRASEKOLAH",
+      "Peruntukan pendidikan awal sebelum murid memasuki sekolah rendah."
+    ],
+    [
+      "PEDALAMAN",
+      "Keperluan akses pendidikan bagi murid di kawasan yang jauh daripada kemudahan."
+    ]
   ],
   [
-    "BIASISWASISWA",
-    "TAJAAN",
-    "PENAJAAN",
-    "PINJAMAN",
-    "KOSKULIAH",
-    "YURAN",
-    "KOSASRAMA",
-    "KOLEJKEDIAMAN",
-    "ELAUNSISWA",
-    "BANTUANSISWA",
-    "VOKASIONAL",
-    "TVET",
-    "PEMBIAYAAN",
-    "LATIHAN",
-    "KEMAHIRAN",
-    "DANA",
-    "SISWAZAH",
-    "PENYELIDIKAN",
-    "INOVASI",
-    "KEUSAHAWANAN"
+    [
+      "BIASISWASISWA",
+      "Bantuan kewangan untuk membantu menampung kos pengajian mahasiswa."
+    ],
+    [
+      "TAJAAN",
+      "Sokongan kewangan bagi pengajian mengikut syarat penaja."
+    ],
+    [
+      "PENAJAAN",
+      "Pembiayaan pengajian yang boleh meliputi yuran atau elaun."
+    ],
+    [
+      "PINJAMAN",
+      "Pembiayaan yang perlu dibayar balik mengikut terma skim."
+    ],
+    [
+      "KOSKULIAH",
+      "Kos mengikuti pengajian yang boleh dibantu melalui pembiayaan pendidikan."
+    ],
+    [
+      "YURAN",
+      "Bayaran kepada institusi pendidikan bagi pengajian atau perkhidmatan tertentu."
+    ],
+    [
+      "KOSASRAMA",
+      "Belanja tempat tinggal yang menjadi sebahagian daripada kos pengajian."
+    ],
+    [
+      "KOLEJKEDIAMAN",
+      "Kemudahan kediaman pelajar yang melibatkan peruntukan pembinaan dan penyelenggaraan."
+    ],
+    [
+      "ELAUNSISWA",
+      "Bayaran bagi membantu pelajar menampung kos sara hidup ketika belajar."
+    ],
+    [
+      "BANTUANSISWA",
+      "Sokongan kepada pelajar bagi mengurangkan beban kos pendidikan."
+    ],
+    [
+      "VOKASIONAL",
+      "Pendidikan berasaskan kemahiran kerja yang memerlukan latihan dan peralatan."
+    ],
+    [
+      "TVET",
+      "Pendidikan dan latihan teknikal serta vokasional yang menyediakan kemahiran pekerjaan."
+    ],
+    [
+      "PEMBIAYAAN",
+      "Dana untuk menampung kos pengajian dan keperluan pelajar."
+    ],
+    [
+      "LATIHAN",
+      "Peruntukan untuk membangunkan kemahiran yang diperlukan di tempat kerja."
+    ],
+    [
+      "KEMAHIRAN",
+      "Kecekapan yang dibina melalui pendidikan dan latihan untuk meningkatkan kebolehpasaran."
+    ],
+    [
+      "DANA",
+      "Sumber kewangan yang diperuntukkan bagi program pelajar atau institusi."
+    ],
+    [
+      "SISWAZAH",
+      "Pelajar program lanjutan yang boleh disokong melalui pembiayaan pengajian."
+    ],
+    [
+      "PENYELIDIKAN",
+      "Aktiviti akademik yang dapat dibiayai melalui geran penyelidikan."
+    ],
+    [
+      "INOVASI",
+      "Pembangunan idea dan teknologi yang boleh disokong melalui dana institusi."
+    ],
+    [
+      "KEUSAHAWANAN",
+      "Latihan dan sokongan untuk membantu pelajar membangunkan usaha niaga."
+    ]
   ],
   [
-    "CARUMAN",
-    "DIVIDEN",
-    "SIMPANAN",
-    "PERSARAAN",
-    "PESARA",
-    "WARIS",
-    "PENAMA",
-    "ANUITI",
-    "TAKAFUL",
-    "INSURANS",
-    "FAEDAH",
-    "PAMPASAN",
-    "HILANGUPAYA",
-    "PEMULIHAN",
-    "PENJAGA",
-    "TANGGUNGAN",
-    "PENCARUM",
-    "MAJIKAN",
-    "PEKERJA",
-    "ELAUN"
+    [
+      "CARUMAN",
+      "Bayaran yang membina simpanan persaraan atau membiayai perlindungan sosial."
+    ],
+    [
+      "DIVIDEN",
+      "Pulangan yang dikreditkan kepada simpanan mengikut prestasi dan peraturan skim."
+    ],
+    [
+      "SIMPANAN",
+      "Wang yang diketepikan untuk kegunaan selepas bersara."
+    ],
+    [
+      "PERSARAAN",
+      "Fasa selepas tamat pekerjaan yang memerlukan perancangan pendapatan."
+    ],
+    [
+      "PESARA",
+      "Golongan yang boleh menerima pencen atau bergantung pada simpanan persaraan."
+    ],
+    [
+      "WARIS",
+      "Ahli keluarga yang mungkin layak menuntut faedah tertentu mengikut peraturan skim."
+    ],
+    [
+      "PENAMA",
+      "Individu yang dinamakan untuk mengurus atau menerima manfaat mengikut peraturan skim."
+    ],
+    [
+      "ANUITI",
+      "Bayaran berkala yang boleh membantu menyediakan pendapatan semasa persaraan."
+    ],
+    [
+      "TAKAFUL",
+      "Perlindungan berasaskan prinsip syariah terhadap risiko tertentu."
+    ],
+    [
+      "INSURANS",
+      "Perlindungan kewangan terhadap risiko yang ditetapkan dalam polisi."
+    ],
+    [
+      "FAEDAH",
+      "Bayaran atau perkhidmatan yang diterima oleh peserta skim yang layak."
+    ],
+    [
+      "PAMPASAN",
+      "Bayaran perlindungan bagi kejadian yang diliputi skim."
+    ],
+    [
+      "HILANGUPAYA",
+      "Keadaan yang boleh melayakkan seseorang menerima sokongan tertakluk pada syarat skim."
+    ],
+    [
+      "PEMULIHAN",
+      "Khidmat rawatan dan latihan untuk membantu pemulihan fungsi atau kembali bekerja."
+    ],
+    [
+      "PENJAGA",
+      "Individu yang menjaga orang lain dan mungkin memerlukan sokongan penjagaan."
+    ],
+    [
+      "TANGGUNGAN",
+      "Ahli keluarga yang bergantung pada pendapatan atau perlindungan seseorang."
+    ],
+    [
+      "PENCARUM",
+      "Individu yang membayar caruman kepada skim perlindungan atau persaraan."
+    ],
+    [
+      "MAJIKAN",
+      "Pihak yang boleh diwajibkan mencarum bagi pekerja mengikut skim berkaitan."
+    ],
+    [
+      "PEKERJA",
+      "Golongan yang dilindungi melalui skim caruman dan faedah pekerjaan."
+    ],
+    [
+      "ELAUN",
+      "Bayaran bantuan untuk memenuhi keperluan penerima yang layak."
+    ]
   ],
   [
-    "BAKULDAPUR",
-    "BARANGASAS",
-    "BELANJA",
-    "PENDAPATAN",
-    "ISIRUMAH",
-    "BANTUAN",
-    "TUNAI",
-    "BAUCAR",
-    "TEBUSAN",
-    "PASARTANI",
-    "HARGA",
-    "SARAHIDUP",
-    "KEPERLUAN",
-    "PENGGUNA",
-    "JIMAT",
-    "BAKULMAKANAN",
-    "BEKALAN",
-    "PERBELANJAAN",
-    "KELAYAKAN",
-    "PERMOHONAN"
+    [
+      "BAKULDAPUR",
+      "Barangan dapur yang menjadi sebahagian daripada kos sara hidup keluarga."
+    ],
+    [
+      "BARANGASAS",
+      "Keperluan harian yang lazimnya diberi perhatian dalam bantuan sara hidup."
+    ],
+    [
+      "BELANJA",
+      "Jumlah wang yang digunakan isi rumah bagi keperluan harian."
+    ],
+    [
+      "PENDAPATAN",
+      "Ukuran yang boleh digunakan untuk menyasarkan bantuan kepada isi rumah."
+    ],
+    [
+      "ISIRUMAH",
+      "Unit keluarga yang lazim digunakan untuk menilai kos hidup dan kelayakan bantuan."
+    ],
+    [
+      "BANTUAN",
+      "Sokongan bagi mengurangkan beban kewangan golongan yang layak."
+    ],
+    [
+      "TUNAI",
+      "Bentuk bantuan wang yang boleh digunakan untuk membayar perbelanjaan harian."
+    ],
+    [
+      "BAUCAR",
+      "Kupon bernilai tertentu untuk mendapatkan barangan atau perkhidmatan yang layak."
+    ],
+    [
+      "TEBUSAN",
+      "Penggunaan bantuan atau baucar bagi pembelian yang dibenarkan."
+    ],
+    [
+      "PASARTANI",
+      "Saluran jualan hasil pertanian yang membantu pengguna mendapatkan barangan segar."
+    ],
+    [
+      "HARGA",
+      "Kos barangan yang mempengaruhi kuasa beli isi rumah."
+    ],
+    [
+      "SARAHIDUP",
+      "Belanja untuk memenuhi keperluan seperti makanan, pengangkutan dan tempat tinggal."
+    ],
+    [
+      "KEPERLUAN",
+      "Barangan dan perkhidmatan asas yang perlu dibiayai oleh isi rumah."
+    ],
+    [
+      "PENGGUNA",
+      "Pembeli yang terkesan oleh perubahan harga dan boleh mendapat manfaat daripada langkah bantuan."
+    ],
+    [
+      "JIMAT",
+      "Mengurangkan belanja melalui pilihan pembelian atau bantuan kos sara hidup."
+    ],
+    [
+      "BAKULMAKANAN",
+      "Kumpulan barangan makanan yang boleh digunakan untuk menilai kos keperluan keluarga."
+    ],
+    [
+      "BEKALAN",
+      "Ketersediaan barangan yang turut mempengaruhi harga kepada pengguna."
+    ],
+    [
+      "PERBELANJAAN",
+      "Jumlah yang dibayar bagi keperluan keluarga dalam sesuatu tempoh."
+    ],
+    [
+      "KELAYAKAN",
+      "Syarat yang menentukan siapa boleh menerima sesuatu bantuan."
+    ],
+    [
+      "PERMOHONAN",
+      "Proses mengemukakan maklumat bagi mendapatkan bantuan yang ditawarkan."
+    ]
   ],
   [
-    "VAKSIN",
-    "IMUNISASI",
-    "SARINGAN",
-    "UBATUBATAN",
-    "UBAT",
-    "RAWATAN",
-    "PESAKIT",
-    "AMBULANS",
-    "KECEMASAN",
-    "PEMAKANAN",
-    "KECERGASAN",
-    "GOTONGROYONG",
-    "KEJIRANAN",
-    "KESEJAHTERAAN",
-    "KEBAJIKAN",
-    "KESUKARELAAN",
-    "DERMA",
-    "DANA",
-    "DANAKOMUNITI",
-    "KITKESIHATAN"
+    [
+      "VAKSIN",
+      "Bekalan yang menyokong pencegahan penyakit melalui peruntukan kesihatan awam."
+    ],
+    [
+      "IMUNISASI",
+      "Program pencegahan penyakit yang melibatkan kos bekalan dan penyampaian perkhidmatan."
+    ],
+    [
+      "SARINGAN",
+      "Pemeriksaan awal yang boleh dibiayai untuk mengesan masalah kesihatan."
+    ],
+    [
+      "UBATUBATAN",
+      "Bekalan farmaseutikal yang perlu dirancang dalam perbelanjaan kesihatan."
+    ],
+    [
+      "UBAT",
+      "Keperluan rawatan yang melibatkan perolehan dan bekalan di fasiliti awam."
+    ],
+    [
+      "RAWATAN",
+      "Perkhidmatan yang dibiayai melalui peruntukan fasiliti dan tenaga kesihatan."
+    ],
+    [
+      "PESAKIT",
+      "Penerima perkhidmatan yang mendapat manfaat daripada kemudahan kesihatan awam."
+    ],
+    [
+      "AMBULANS",
+      "Kenderaan yang memerlukan peruntukan untuk respons dan pengangkutan pesakit."
+    ],
+    [
+      "KECEMASAN",
+      "Perkhidmatan segera yang memerlukan petugas, peralatan dan kapasiti rawatan."
+    ],
+    [
+      "PEMAKANAN",
+      "Aspek kesihatan yang boleh disokong melalui pendidikan dan program pemakanan."
+    ],
+    [
+      "KECERGASAN",
+      "Aktiviti kesihatan yang boleh disokong melalui program komuniti."
+    ],
+    [
+      "GOTONGROYONG",
+      "Aktiviti bersama yang boleh disokong melalui dana komuniti setempat."
+    ],
+    [
+      "KEJIRANAN",
+      "Kawasan yang mendapat manfaat daripada kemudahan dan program komuniti."
+    ],
+    [
+      "KESEJAHTERAAN",
+      "Matlamat peruntukan yang menyokong kesihatan serta kualiti hidup rakyat."
+    ],
+    [
+      "KEBAJIKAN",
+      "Bantuan dan perkhidmatan untuk individu atau keluarga yang memerlukan."
+    ],
+    [
+      "KESUKARELAAN",
+      "Khidmat masyarakat yang boleh disokong melalui latihan dan perlindungan sukarelawan."
+    ],
+    [
+      "DERMA",
+      "Sumbangan yang boleh melengkapi pembiayaan bagi aktiviti masyarakat."
+    ],
+    [
+      "DANA",
+      "Wang yang disediakan untuk membiayai inisiatif kesihatan atau komuniti."
+    ],
+    [
+      "DANAKOMUNITI",
+      "Peruntukan untuk membiayai aktiviti dan keperluan masyarakat setempat."
+    ],
+    [
+      "KITKESIHATAN",
+      "Set barangan asas kesihatan yang boleh dibiayai bagi program komuniti."
+    ]
   ]
 ];
 EXTRA_WORDS.forEach((words, index) => {
-  SETS[index].words.push(...words.map(word => [word, '']));
+  SETS[index].words.push(...words);
 });
 
 const previousRounds = new Map();
